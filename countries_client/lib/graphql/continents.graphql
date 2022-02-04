@@ -1,0 +1,5 @@
+query FetchContinents   {
+  continents {
+    name
+  }
+}

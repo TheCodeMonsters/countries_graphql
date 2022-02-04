@@ -10,6 +10,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCacheControlScope.serializer)
       ..add(GContinentFilterInput.serializer)
       ..add(GCountryFilterInput.serializer)
+      ..add(GFetchContinentsData.serializer)
+      ..add(GFetchContinentsData_continents.serializer)
+      ..add(GFetchContinentsReq.serializer)
+      ..add(GFetchContinentsVars.serializer)
       ..add(GFetchCountriesData.serializer)
       ..add(GFetchCountriesData_countries.serializer)
       ..add(GFetchCountriesData_countries_continent.serializer)
@@ -19,6 +23,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GLanguageFilterInput.serializer)
       ..add(GStringQueryOperatorInput.serializer)
       ..add(GUpload.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GFetchContinentsData_continents)]),
+          () => new ListBuilder<GFetchContinentsData_continents>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GFetchCountriesData_countries)]),

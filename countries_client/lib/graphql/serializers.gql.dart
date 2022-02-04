@@ -1,6 +1,12 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
+import 'package:countries_client/graphql/continents.data.gql.dart'
+    show GFetchContinentsData, GFetchContinentsData_continents;
+import 'package:countries_client/graphql/continents.req.gql.dart'
+    show GFetchContinentsReq;
+import 'package:countries_client/graphql/continents.var.gql.dart'
+    show GFetchContinentsVars;
 import 'package:countries_client/graphql/countries.data.gql.dart'
     show
         GFetchCountriesData,
@@ -31,6 +37,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCacheControlScope,
   GContinentFilterInput,
   GCountryFilterInput,
+  GFetchContinentsData,
+  GFetchContinentsData_continents,
+  GFetchContinentsReq,
+  GFetchContinentsVars,
   GFetchCountriesData,
   GFetchCountriesData_countries,
   GFetchCountriesData_countries_continent,
