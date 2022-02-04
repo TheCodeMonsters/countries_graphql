@@ -39,12 +39,11 @@ const Continent = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-        name: _i1.NameNode(value: 'code'),
-        directives: [],
-        args: [],
-        type:
-            _i1.NamedTypeNode(name: _i1.NameNode(value: 'ID'), isNonNull: true),
-      ),
+          name: _i1.NameNode(value: 'code'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: true)),
       _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'name'),
           directives: [],
