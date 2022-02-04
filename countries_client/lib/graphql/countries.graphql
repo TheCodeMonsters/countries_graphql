@@ -1,0 +1,13 @@
+query FetchCountries {
+  countries {
+    code
+    name
+    emoji
+    continent {
+      name
+    }
+    languages {
+      name
+    }
+  }
+}
