@@ -46,7 +46,9 @@ app.*.map.json
 /android/app/release
 
 
-# Plarform specific
-
+# Platfprm 
+macos/
 test/
+web/
+windows/
 linux/

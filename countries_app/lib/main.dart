@@ -1,21 +1,50 @@
+import 'package:countries_client/graphql/countries.data.gql.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
+import 'package:countries_client/countries_client.dart';
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final client = initClient('https://countries.trevorblades.com/');
+  final countriesReq = GFetchCountriesReq();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('World Nations'),
         ),
-        body: Center(
-          child: Container(
-            child: const Text('Hello World'),
-          ),
+        body: Operation(
+          client: client,
+          operationRequest: countriesReq,
+          builder: (BuildContext context,
+              OperationResponse<GFetchCountriesData, GFetchCountriesVars>
+                  response) {
+            if (response.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            final countries = response.data.countries;
+
+            return ListView.builder(
+              itemCount: countries.length,
+              itemBuilder: (context, index) => ListTile(
+                leading: Text('   ' + countries[index].emoji),
+                title: Text(countries[index].name),
+                subtitle: Text(countries[index].capital ?? '---'),
+              ),
+            );
+          },
         ),
       ),
     );

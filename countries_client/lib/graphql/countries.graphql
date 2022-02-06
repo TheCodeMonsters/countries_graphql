@@ -1,13 +1,9 @@
-query FetchCountries {
-  countries {
+query FetchCountries($filter: CountryFilterInput) {
+  countries(filter: $filter) {
     code
     name
+    native
     emoji
-    continent {
-      name
-    }
-    languages {
-      name
-    }
+    capital
   }
 }

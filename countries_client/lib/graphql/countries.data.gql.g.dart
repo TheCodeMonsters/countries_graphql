@@ -11,12 +11,6 @@ Serializer<GFetchCountriesData> _$gFetchCountriesDataSerializer =
 Serializer<GFetchCountriesData_countries>
     _$gFetchCountriesDataCountriesSerializer =
     new _$GFetchCountriesData_countriesSerializer();
-Serializer<GFetchCountriesData_countries_continent>
-    _$gFetchCountriesDataCountriesContinentSerializer =
-    new _$GFetchCountriesData_countries_continentSerializer();
-Serializer<GFetchCountriesData_countries_languages>
-    _$gFetchCountriesDataCountriesLanguagesSerializer =
-    new _$GFetchCountriesData_countries_languagesSerializer();
 
 class _$GFetchCountriesDataSerializer
     implements StructuredSerializer<GFetchCountriesData> {
@@ -96,19 +90,21 @@ class _$GFetchCountriesData_countriesSerializer
       serializers.serialize(object.code, specifiedType: const FullType(String)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'native',
+      serializers.serialize(object.native,
+          specifiedType: const FullType(String)),
       'emoji',
       serializers.serialize(object.emoji,
           specifiedType: const FullType(String)),
-      'continent',
-      serializers.serialize(object.continent,
-          specifiedType:
-              const FullType(GFetchCountriesData_countries_continent)),
-      'languages',
-      serializers.serialize(object.languages,
-          specifiedType: const FullType(BuiltList,
-              const [const FullType(GFetchCountriesData_countries_languages)])),
     ];
-
+    Object? value;
+    value = object.capital;
+    if (value != null) {
+      result
+        ..add('capital')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -136,129 +132,16 @@ class _$GFetchCountriesData_countriesSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'native':
+          result.native = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'emoji':
           result.emoji = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'continent':
-          result.continent.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GFetchCountriesData_countries_continent))!
-              as GFetchCountriesData_countries_continent);
-          break;
-        case 'languages':
-          result.languages.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GFetchCountriesData_countries_languages)
-              ]))! as BuiltList<Object?>);
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GFetchCountriesData_countries_continentSerializer
-    implements StructuredSerializer<GFetchCountriesData_countries_continent> {
-  @override
-  final Iterable<Type> types = const [
-    GFetchCountriesData_countries_continent,
-    _$GFetchCountriesData_countries_continent
-  ];
-  @override
-  final String wireName = 'GFetchCountriesData_countries_continent';
-
-  @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GFetchCountriesData_countries_continent object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-    ];
-
-    return result;
-  }
-
-  @override
-  GFetchCountriesData_countries_continent deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFetchCountriesData_countries_continentBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GFetchCountriesData_countries_languagesSerializer
-    implements StructuredSerializer<GFetchCountriesData_countries_languages> {
-  @override
-  final Iterable<Type> types = const [
-    GFetchCountriesData_countries_languages,
-    _$GFetchCountriesData_countries_languages
-  ];
-  @override
-  final String wireName = 'GFetchCountriesData_countries_languages';
-
-  @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GFetchCountriesData_countries_languages object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-    ];
-    Object? value;
-    value = object.name;
-    if (value != null) {
-      result
-        ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    return result;
-  }
-
-  @override
-  GFetchCountriesData_countries_languages deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFetchCountriesData_countries_languagesBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'name':
-          result.name = serializers.deserialize(value,
+        case 'capital':
+          result.capital = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -389,11 +272,11 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
   @override
   final String name;
   @override
+  final String native;
+  @override
   final String emoji;
   @override
-  final GFetchCountriesData_countries_continent continent;
-  @override
-  final BuiltList<GFetchCountriesData_countries_languages> languages;
+  final String? capital;
 
   factory _$GFetchCountriesData_countries(
           [void Function(GFetchCountriesData_countriesBuilder)? updates]) =>
@@ -403,9 +286,9 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
       {required this.G__typename,
       required this.code,
       required this.name,
+      required this.native,
       required this.emoji,
-      required this.continent,
-      required this.languages})
+      this.capital})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GFetchCountriesData_countries', 'G__typename');
@@ -414,11 +297,9 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
     BuiltValueNullFieldError.checkNotNull(
         name, 'GFetchCountriesData_countries', 'name');
     BuiltValueNullFieldError.checkNotNull(
+        native, 'GFetchCountriesData_countries', 'native');
+    BuiltValueNullFieldError.checkNotNull(
         emoji, 'GFetchCountriesData_countries', 'emoji');
-    BuiltValueNullFieldError.checkNotNull(
-        continent, 'GFetchCountriesData_countries', 'continent');
-    BuiltValueNullFieldError.checkNotNull(
-        languages, 'GFetchCountriesData_countries', 'languages');
   }
 
   @override
@@ -437,9 +318,9 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
         G__typename == other.G__typename &&
         code == other.code &&
         name == other.name &&
+        native == other.native &&
         emoji == other.emoji &&
-        continent == other.continent &&
-        languages == other.languages;
+        capital == other.capital;
   }
 
   @override
@@ -449,9 +330,9 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
             $jc(
                 $jc($jc($jc(0, G__typename.hashCode), code.hashCode),
                     name.hashCode),
-                emoji.hashCode),
-            continent.hashCode),
-        languages.hashCode));
+                native.hashCode),
+            emoji.hashCode),
+        capital.hashCode));
   }
 
   @override
@@ -460,9 +341,9 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
           ..add('G__typename', G__typename)
           ..add('code', code)
           ..add('name', name)
+          ..add('native', native)
           ..add('emoji', emoji)
-          ..add('continent', continent)
-          ..add('languages', languages))
+          ..add('capital', capital))
         .toString();
   }
 }
@@ -485,24 +366,17 @@ class GFetchCountriesData_countriesBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _native;
+  String? get native => _$this._native;
+  set native(String? native) => _$this._native = native;
+
   String? _emoji;
   String? get emoji => _$this._emoji;
   set emoji(String? emoji) => _$this._emoji = emoji;
 
-  GFetchCountriesData_countries_continentBuilder? _continent;
-  GFetchCountriesData_countries_continentBuilder get continent =>
-      _$this._continent ??=
-          new GFetchCountriesData_countries_continentBuilder();
-  set continent(GFetchCountriesData_countries_continentBuilder? continent) =>
-      _$this._continent = continent;
-
-  ListBuilder<GFetchCountriesData_countries_languages>? _languages;
-  ListBuilder<GFetchCountriesData_countries_languages> get languages =>
-      _$this._languages ??=
-          new ListBuilder<GFetchCountriesData_countries_languages>();
-  set languages(
-          ListBuilder<GFetchCountriesData_countries_languages>? languages) =>
-      _$this._languages = languages;
+  String? _capital;
+  String? get capital => _$this._capital;
+  set capital(String? capital) => _$this._capital = capital;
 
   GFetchCountriesData_countriesBuilder() {
     GFetchCountriesData_countries._initializeBuilder(this);
@@ -514,9 +388,9 @@ class GFetchCountriesData_countriesBuilder
       _G__typename = $v.G__typename;
       _code = $v.code;
       _name = $v.name;
+      _native = $v.native;
       _emoji = $v.emoji;
-      _continent = $v.continent.toBuilder();
-      _languages = $v.languages.toBuilder();
+      _capital = $v.capital;
       _$v = null;
     }
     return this;
@@ -535,246 +409,19 @@ class GFetchCountriesData_countriesBuilder
 
   @override
   _$GFetchCountriesData_countries build() {
-    _$GFetchCountriesData_countries _$result;
-    try {
-      _$result = _$v ??
-          new _$GFetchCountriesData_countries._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, 'GFetchCountriesData_countries', 'G__typename'),
-              code: BuiltValueNullFieldError.checkNotNull(
-                  code, 'GFetchCountriesData_countries', 'code'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, 'GFetchCountriesData_countries', 'name'),
-              emoji: BuiltValueNullFieldError.checkNotNull(
-                  emoji, 'GFetchCountriesData_countries', 'emoji'),
-              continent: continent.build(),
-              languages: languages.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'continent';
-        continent.build();
-        _$failedField = 'languages';
-        languages.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'GFetchCountriesData_countries', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GFetchCountriesData_countries_continent
-    extends GFetchCountriesData_countries_continent {
-  @override
-  final String G__typename;
-  @override
-  final String name;
-
-  factory _$GFetchCountriesData_countries_continent(
-          [void Function(GFetchCountriesData_countries_continentBuilder)?
-              updates]) =>
-      (new GFetchCountriesData_countries_continentBuilder()..update(updates))
-          .build();
-
-  _$GFetchCountriesData_countries_continent._(
-      {required this.G__typename, required this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, 'GFetchCountriesData_countries_continent', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        name, 'GFetchCountriesData_countries_continent', 'name');
-  }
-
-  @override
-  GFetchCountriesData_countries_continent rebuild(
-          void Function(GFetchCountriesData_countries_continentBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GFetchCountriesData_countries_continentBuilder toBuilder() =>
-      new GFetchCountriesData_countries_continentBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GFetchCountriesData_countries_continent &&
-        G__typename == other.G__typename &&
-        name == other.name;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), name.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'GFetchCountriesData_countries_continent')
-          ..add('G__typename', G__typename)
-          ..add('name', name))
-        .toString();
-  }
-}
-
-class GFetchCountriesData_countries_continentBuilder
-    implements
-        Builder<GFetchCountriesData_countries_continent,
-            GFetchCountriesData_countries_continentBuilder> {
-  _$GFetchCountriesData_countries_continent? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  GFetchCountriesData_countries_continentBuilder() {
-    GFetchCountriesData_countries_continent._initializeBuilder(this);
-  }
-
-  GFetchCountriesData_countries_continentBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GFetchCountriesData_countries_continent other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GFetchCountriesData_countries_continent;
-  }
-
-  @override
-  void update(
-      void Function(GFetchCountriesData_countries_continentBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$GFetchCountriesData_countries_continent build() {
     final _$result = _$v ??
-        new _$GFetchCountriesData_countries_continent._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                'GFetchCountriesData_countries_continent', 'G__typename'),
+        new _$GFetchCountriesData_countries._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, 'GFetchCountriesData_countries', 'G__typename'),
+            code: BuiltValueNullFieldError.checkNotNull(
+                code, 'GFetchCountriesData_countries', 'code'),
             name: BuiltValueNullFieldError.checkNotNull(
-                name, 'GFetchCountriesData_countries_continent', 'name'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GFetchCountriesData_countries_languages
-    extends GFetchCountriesData_countries_languages {
-  @override
-  final String G__typename;
-  @override
-  final String? name;
-
-  factory _$GFetchCountriesData_countries_languages(
-          [void Function(GFetchCountriesData_countries_languagesBuilder)?
-              updates]) =>
-      (new GFetchCountriesData_countries_languagesBuilder()..update(updates))
-          .build();
-
-  _$GFetchCountriesData_countries_languages._(
-      {required this.G__typename, this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, 'GFetchCountriesData_countries_languages', 'G__typename');
-  }
-
-  @override
-  GFetchCountriesData_countries_languages rebuild(
-          void Function(GFetchCountriesData_countries_languagesBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GFetchCountriesData_countries_languagesBuilder toBuilder() =>
-      new GFetchCountriesData_countries_languagesBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GFetchCountriesData_countries_languages &&
-        G__typename == other.G__typename &&
-        name == other.name;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), name.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'GFetchCountriesData_countries_languages')
-          ..add('G__typename', G__typename)
-          ..add('name', name))
-        .toString();
-  }
-}
-
-class GFetchCountriesData_countries_languagesBuilder
-    implements
-        Builder<GFetchCountriesData_countries_languages,
-            GFetchCountriesData_countries_languagesBuilder> {
-  _$GFetchCountriesData_countries_languages? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  GFetchCountriesData_countries_languagesBuilder() {
-    GFetchCountriesData_countries_languages._initializeBuilder(this);
-  }
-
-  GFetchCountriesData_countries_languagesBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GFetchCountriesData_countries_languages other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GFetchCountriesData_countries_languages;
-  }
-
-  @override
-  void update(
-      void Function(GFetchCountriesData_countries_languagesBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$GFetchCountriesData_countries_languages build() {
-    final _$result = _$v ??
-        new _$GFetchCountriesData_countries_languages._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                'GFetchCountriesData_countries_languages', 'G__typename'),
-            name: name);
+                name, 'GFetchCountriesData_countries', 'name'),
+            native: BuiltValueNullFieldError.checkNotNull(
+                native, 'GFetchCountriesData_countries', 'native'),
+            emoji: BuiltValueNullFieldError.checkNotNull(
+                emoji, 'GFetchCountriesData_countries', 'emoji'),
+            capital: capital);
     replace(_$result);
     return _$result;
   }

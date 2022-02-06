@@ -1,4 +1,4 @@
-package com.example.countries_client
+package com.example.countries_app
 
 import io.flutter.embedding.android.FlutterActivity
 

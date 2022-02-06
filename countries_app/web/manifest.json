@@ -1,6 +1,6 @@
 {
-    "name": "countries_client",
-    "short_name": "countries_client",
+    "name": "countries_app",
+    "short_name": "countries_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -16,8 +16,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GFetchContinentsVars.serializer)
       ..add(GFetchCountriesData.serializer)
       ..add(GFetchCountriesData_countries.serializer)
-      ..add(GFetchCountriesData_countries_continent.serializer)
-      ..add(GFetchCountriesData_countries_languages.serializer)
       ..add(GFetchCountriesReq.serializer)
       ..add(GFetchCountriesVars.serializer)
       ..add(GLanguageFilterInput.serializer)
@@ -31,10 +29,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(GFetchCountriesData_countries)]),
           () => new ListBuilder<GFetchCountriesData_countries>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GFetchCountriesData_countries_languages)]),
-          () => new ListBuilder<GFetchCountriesData_countries_languages>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

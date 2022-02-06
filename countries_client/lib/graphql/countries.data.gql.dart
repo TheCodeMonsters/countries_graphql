@@ -44,9 +44,9 @@ abstract class GFetchCountriesData_countries
   String get G__typename;
   String get code;
   String get name;
+  String get native;
   String get emoji;
-  GFetchCountriesData_countries_continent get continent;
-  BuiltList<GFetchCountriesData_countries_languages> get languages;
+  String? get capital;
   static Serializer<GFetchCountriesData_countries> get serializer =>
       _$gFetchCountriesDataCountriesSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -54,58 +54,4 @@ abstract class GFetchCountriesData_countries
   static GFetchCountriesData_countries? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GFetchCountriesData_countries.serializer, json);
-}
-
-abstract class GFetchCountriesData_countries_continent
-    implements
-        Built<GFetchCountriesData_countries_continent,
-            GFetchCountriesData_countries_continentBuilder> {
-  GFetchCountriesData_countries_continent._();
-
-  factory GFetchCountriesData_countries_continent(
-      [Function(GFetchCountriesData_countries_continentBuilder b)
-          updates]) = _$GFetchCountriesData_countries_continent;
-
-  static void _initializeBuilder(
-          GFetchCountriesData_countries_continentBuilder b) =>
-      b..G__typename = 'Continent';
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get name;
-  static Serializer<GFetchCountriesData_countries_continent> get serializer =>
-      _$gFetchCountriesDataCountriesContinentSerializer;
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-          GFetchCountriesData_countries_continent.serializer, this)
-      as Map<String, dynamic>);
-  static GFetchCountriesData_countries_continent? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-          GFetchCountriesData_countries_continent.serializer, json);
-}
-
-abstract class GFetchCountriesData_countries_languages
-    implements
-        Built<GFetchCountriesData_countries_languages,
-            GFetchCountriesData_countries_languagesBuilder> {
-  GFetchCountriesData_countries_languages._();
-
-  factory GFetchCountriesData_countries_languages(
-      [Function(GFetchCountriesData_countries_languagesBuilder b)
-          updates]) = _$GFetchCountriesData_countries_languages;
-
-  static void _initializeBuilder(
-          GFetchCountriesData_countries_languagesBuilder b) =>
-      b..G__typename = 'Language';
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String? get name;
-  static Serializer<GFetchCountriesData_countries_languages> get serializer =>
-      _$gFetchCountriesDataCountriesLanguagesSerializer;
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-          GFetchCountriesData_countries_languages.serializer, this)
-      as Map<String, dynamic>);
-  static GFetchCountriesData_countries_languages? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-          GFetchCountriesData_countries_languages.serializer, json);
 }
