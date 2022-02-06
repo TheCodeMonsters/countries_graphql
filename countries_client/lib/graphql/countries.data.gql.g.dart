@@ -97,7 +97,14 @@ class _$GFetchCountriesData_countriesSerializer
       serializers.serialize(object.emoji,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.capital;
+    if (value != null) {
+      result
+        ..add('capital')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -132,6 +139,10 @@ class _$GFetchCountriesData_countriesSerializer
         case 'emoji':
           result.emoji = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'capital':
+          result.capital = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -264,6 +275,8 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
   final String native;
   @override
   final String emoji;
+  @override
+  final String? capital;
 
   factory _$GFetchCountriesData_countries(
           [void Function(GFetchCountriesData_countriesBuilder)? updates]) =>
@@ -274,7 +287,8 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
       required this.code,
       required this.name,
       required this.native,
-      required this.emoji})
+      required this.emoji,
+      this.capital})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GFetchCountriesData_countries', 'G__typename');
@@ -305,17 +319,20 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
         code == other.code &&
         name == other.name &&
         native == other.native &&
-        emoji == other.emoji;
+        emoji == other.emoji &&
+        capital == other.capital;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, G__typename.hashCode), code.hashCode),
-                name.hashCode),
-            native.hashCode),
-        emoji.hashCode));
+            $jc(
+                $jc($jc($jc(0, G__typename.hashCode), code.hashCode),
+                    name.hashCode),
+                native.hashCode),
+            emoji.hashCode),
+        capital.hashCode));
   }
 
   @override
@@ -325,7 +342,8 @@ class _$GFetchCountriesData_countries extends GFetchCountriesData_countries {
           ..add('code', code)
           ..add('name', name)
           ..add('native', native)
-          ..add('emoji', emoji))
+          ..add('emoji', emoji)
+          ..add('capital', capital))
         .toString();
   }
 }
@@ -356,6 +374,10 @@ class GFetchCountriesData_countriesBuilder
   String? get emoji => _$this._emoji;
   set emoji(String? emoji) => _$this._emoji = emoji;
 
+  String? _capital;
+  String? get capital => _$this._capital;
+  set capital(String? capital) => _$this._capital = capital;
+
   GFetchCountriesData_countriesBuilder() {
     GFetchCountriesData_countries._initializeBuilder(this);
   }
@@ -368,6 +390,7 @@ class GFetchCountriesData_countriesBuilder
       _name = $v.name;
       _native = $v.native;
       _emoji = $v.emoji;
+      _capital = $v.capital;
       _$v = null;
     }
     return this;
@@ -397,7 +420,8 @@ class GFetchCountriesData_countriesBuilder
             native: BuiltValueNullFieldError.checkNotNull(
                 native, 'GFetchCountriesData_countries', 'native'),
             emoji: BuiltValueNullFieldError.checkNotNull(
-                emoji, 'GFetchCountriesData_countries', 'emoji'));
+                emoji, 'GFetchCountriesData_countries', 'emoji'),
+            capital: capital);
     replace(_$result);
     return _$result;
   }

@@ -4,5 +4,6 @@ query FetchCountries($filter: CountryFilterInput) {
     name
     native
     emoji
+    capital
   }
 }

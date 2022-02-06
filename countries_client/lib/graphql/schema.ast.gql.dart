@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:countries_client/graphql/countries.ast.gql.dart' as _i2;
 import 'package:gql/ast.dart' as _i1;
 
 const cacheControl = _i1.DirectiveDefinitionNode(
@@ -391,5 +392,6 @@ const document = _i1.DocumentNode(definitions: [
   Query,
   State,
   StringQueryOperatorInput,
-  Upload
+  Upload,
+  _i2.FetchCountries
 ]);

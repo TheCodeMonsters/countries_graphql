@@ -46,6 +46,7 @@ abstract class GFetchCountriesData_countries
   String get name;
   String get native;
   String get emoji;
+  String? get capital;
   static Serializer<GFetchCountriesData_countries> get serializer =>
       _$gFetchCountriesDataCountriesSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
