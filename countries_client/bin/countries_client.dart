@@ -1,11 +1,11 @@
+import 'package:countries_client/constants.dart';
 import 'package:countries_client/countries_client.dart';
-import 'package:countries_client/graphql/continents.req.gql.dart';
 
 void main(List<String> args) {
   // final continentsReq = GFetchCon==tinentsReq();
-  final countriesReq = GFetchCountriesReq();
+  final countriesReq = GFetchCountriesReq((b) => b..vars.filter.code.eq = 'ES');
 
-  final client = initClient('https://countries.trevorblades.com/');
+  final client = initClient(urlGraphql);
 
   // client.request(continentsReq).listen((response) {
   client.request(countriesReq).listen((response) {

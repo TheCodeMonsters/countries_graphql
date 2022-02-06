@@ -8,11 +8,7 @@ import 'package:countries_client/graphql/continents.req.gql.dart'
 import 'package:countries_client/graphql/continents.var.gql.dart'
     show GFetchContinentsVars;
 import 'package:countries_client/graphql/countries.data.gql.dart'
-    show
-        GFetchCountriesData,
-        GFetchCountriesData_countries,
-        GFetchCountriesData_countries_continent,
-        GFetchCountriesData_countries_languages;
+    show GFetchCountriesData, GFetchCountriesData_countries;
 import 'package:countries_client/graphql/countries.req.gql.dart'
     show GFetchCountriesReq;
 import 'package:countries_client/graphql/countries.var.gql.dart'
@@ -43,8 +39,6 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GFetchContinentsVars,
   GFetchCountriesData,
   GFetchCountriesData_countries,
-  GFetchCountriesData_countries_continent,
-  GFetchCountriesData_countries_languages,
   GFetchCountriesReq,
   GFetchCountriesVars,
   GLanguageFilterInput,
