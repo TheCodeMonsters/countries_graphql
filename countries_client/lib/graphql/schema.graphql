@@ -1,4 +1,3 @@
-# import './countries.graphql'
 
 directive @cacheControl(
   maxAge: Int

@@ -1,4 +1,4 @@
-name: countries_client
+name: countries_app
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -14,11 +14,21 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  ferry: ^0.10.4
+  gql_http_link: ^0.4.0
+  ferry_flutter: ^0.5.4
+
+  countries_client:
+    path: ../countries_client
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^1.0.0
+
+  ferry_generator: ^0.4.4
+  build_runner: ^2.1.7
 
 flutter:
   uses-material-design: true
